@@ -27,7 +27,7 @@ def start(update: Update, context: CallbackContext):
 
 def handle_new_question_request(update: Update, context: CallbackContext):
     question = questions_db.randomkey()
-    update.message.reply_text(question, reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text(question)
     tg_users_db.set(update.message.chat_id, question)
     return ANSWER
 
