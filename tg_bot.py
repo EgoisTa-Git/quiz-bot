@@ -28,12 +28,12 @@ def start(update: Update, context: CallbackContext):
 def handle_new_question_request(update: Update, context: CallbackContext):
     question = questions_db.randomkey()
     update.message.reply_text(question, reply_markup=ReplyKeyboardRemove())
-    users_db.set(update.message.chat_id, question)
+    tg_users_db.set(update.message.chat_id, question)
     return ANSWER
 
 
 def handle_solution_attempt(update: Update, context: CallbackContext):
-    question = users_db.get(update.message.chat_id)
+    question = tg_users_db.get(update.message.chat_id)
     answer = questions_db.get(question).lstrip('Ответ: ').rstrip('.').strip()
     answer = answer.replace('"', '')
     correct_answer = re.sub(r'[\(\[].*?[\)\]]', '', answer).lower()
@@ -48,7 +48,7 @@ def handle_solution_attempt(update: Update, context: CallbackContext):
 
 
 def handle_give_up_request(update: Update, context: CallbackContext):
-    question = users_db.get(update.message.chat_id)
+    question = tg_users_db.get(update.message.chat_id)
     answer = questions_db.get(question)
     update.message.reply_text(answer)
     update.message.reply_text('Не расстраивайся! В следующий раз обязательно получится!')
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         decode_responses=True,
         db=0,
     )
-    users_db = redis.Redis(
+    tg_users_db = redis.Redis(
         host='localhost',
         port=6379,
         password=redis_db_pass,
