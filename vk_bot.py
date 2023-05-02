@@ -8,15 +8,6 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.utils import get_random_id
 
 
-def echo(event, api, keyboard):
-    api.messages.send(
-        user_id=event.user_id,
-        message=event.text,
-        random_id=get_random_id(),
-        keyboard=keyboard.get_keyboard(),
-    )
-
-
 def handle_new_question_request(event, api, keyboard):
     question = questions_db.randomkey()
     vk_users_db.set(event.user_id, question)
