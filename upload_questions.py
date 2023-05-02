@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 import re
 
@@ -27,8 +28,23 @@ def get_questions_vs_answers_pairs(lines):
     return dict(zip(questions, answers))
 
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description='Загрузчик для базы данных Redis'
+    )
+    parser.add_argument(
+        '--qa_path',
+        type=Path,
+        default='questions',
+        help='путь к каталогу с txt-файлами вопросов',
+    )
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == '__main__':
-    file_paths = get_file_paths('questions')
+    parsed_arguments = parse_arguments()
+    file_paths = get_file_paths(parsed_arguments.qa_path)
     env = Env()
     env.read_env()
     redis_db_pass = env('REDIS_DB_PASS')
