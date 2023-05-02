@@ -55,7 +55,7 @@ def handle_give_up_request(update: Update, context: CallbackContext):
     handle_new_question_request(update, context)
 
 
-def handle_my_score_request(update: Update, context: CallbackContext):
+def handle_score_request(update: Update, context: CallbackContext):
     update.message.reply_text('Эта функция будет доступна позднее. Надеемся на Ваше понимание.')
 
 
@@ -97,11 +97,11 @@ if __name__ == '__main__':
         states={
             NEW_QUESTION: [
                 MessageHandler(Filters.regex(r'^Новый вопрос'), handle_new_question_request),
-                MessageHandler(Filters.regex(r'^Мой счет'), handle_my_score_request),
+                MessageHandler(Filters.regex(r'^Мой счет'), handle_score_request),
             ],
             ANSWER: [
                 MessageHandler(Filters.regex(r'^Сдаться'), handle_give_up_request),
-                MessageHandler(Filters.regex(r'^Мой счет'), handle_my_score_request),
+                MessageHandler(Filters.regex(r'^Мой счет'), handle_score_request),
                 MessageHandler(Filters.text, handle_solution_attempt),
             ],
         },

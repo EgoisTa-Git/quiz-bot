@@ -16,7 +16,7 @@ def get_file_paths(path_to_questions):
     return paths
 
 
-def get_pairs(lines):
+def get_questions_vs_answers_pairs(lines):
     questions = []
     answers = []
     for line in lines:
@@ -42,5 +42,5 @@ if __name__ == '__main__':
     for path in file_paths:
         with open(path, encoding='KOI8-R') as file:
             texts = file.read().split('\n\n')
-        for question, answer in get_pairs(texts).items():
+        for question, answer in get_questions_vs_answers_pairs(texts).items():
             questions_db.set(question, answer)

@@ -28,7 +28,7 @@ def handle_new_question_request(event, api, keyboard):
     )
 
 
-def handle_my_score_request(event, api, keyboard):
+def handle_score_request(event, api, keyboard):
     api.messages.send(
         user_id=event.user_id,
         message='Эта функция будет доступна позднее. Надеемся на Ваше понимание.',
@@ -116,6 +116,6 @@ if __name__ == '__main__':
             elif vk_event.text == 'Новый вопрос':
                 handle_new_question_request(vk_event, vk_api, vk_keyboard)
             elif vk_event.text == 'Мой счет':
-                handle_my_score_request(vk_event, vk_api, vk_keyboard)
+                handle_score_request(vk_event, vk_api, vk_keyboard)
             else:
                 handle_solution_attempt(vk_event, vk_api, vk_keyboard)
