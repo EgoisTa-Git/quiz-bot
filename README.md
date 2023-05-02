@@ -66,9 +66,11 @@ python vk_bot.py
 
 Доступные переменные:
 
-- `VK_BOT_APIKEY` - Ваш API-ключ для работы с VK-ботом
-- `TG_BOT_APIKEY` - Ваш API-ключ для работы с Telegram-ботом
-- `REDIS_DB_PASS` - Ваш пароль для базы данных Redis
+- `VK_BOT_APIKEY` - API-ключ для работы с VK-ботом
+- `TG_BOT_APIKEY` - API-ключ для работы с Telegram-ботом
+- `REDIS_DB_PASS` - пароль для базы данных Redis
+- `REDIS_DB_HOST` - IP-адрес базы данных Redis (по умолчанию `localhost` - для инстанса базы, запущенного локально)
+- `REDIS_DB_PORT` - порт для подключения к базе данных
 
 ## Цели проекта
 
