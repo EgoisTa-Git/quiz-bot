@@ -48,9 +48,11 @@ if __name__ == '__main__':
     env = Env()
     env.read_env()
     redis_db_pass = env('REDIS_DB_PASS')
+    redis_db_host = env('REDIS_DB_HOST', 'localhost')
+    redis_db_port = env.int('REDIS_DB_PORT', 6379)
     questions_db = redis.Redis(
-        host='localhost',
-        port=6379,
+        host=redis_db_host,
+        port=redis_db_port,
         password=redis_db_pass,
         decode_responses=True,
         db=0,
